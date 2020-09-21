@@ -1,5 +1,14 @@
 var number = Math.floor((Math.random() * 100) + 1);
-document.getElementById("btn").addEventListener("click", guessNumber)
+document.getElementById("btn").addEventListener("click", guessNumber);
+
+document.getElementById("inp")
+    .addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById("btn").click();
+        }
+    });
+
 var counter = 0;
 counter++;
 
