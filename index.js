@@ -16,8 +16,9 @@ function guessNumber() {
     const num = document.getElementById("inp").value;
     num_1 = parseInt(num);
 
-    if (num_1 == "") {
+    if (num_1 === "") {
         document.getElementById("res").innerHTML = "Are you sure that this is a number?";
+        break;
     } else if (isNaN(num_1)) {
         document.getElementById("res").innerHTML = "Write the number";
     } else if (num_1 < number) {
