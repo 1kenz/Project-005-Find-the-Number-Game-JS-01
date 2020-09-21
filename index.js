@@ -10,7 +10,7 @@ document.getElementById("inp")
     });
 
 var counter = 0;
-counter++;
+// counter++;
 
 function guessNumber() {
     const num = document.getElementById("inp").value;
