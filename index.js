@@ -10,13 +10,12 @@ document.getElementById("inp")
     });
 
 var counter = 0;
-// counter++;
 
 function guessNumber() {
     const num = document.getElementById("inp").value;
     num_1 = parseInt(num);
 
-    if (num_1 == null) {
+    if (num_1 == parseInt("")) {
         document.getElementById("res").innerHTML = "Are you sure that this is a number?";
     } else if (isNaN(num_1)) {
         document.getElementById("res").innerHTML = "Write the number";
@@ -27,5 +26,7 @@ function guessNumber() {
     } else {
         alert("You are the winner :D. You guest after " + counter + " times!");
     }
-    document.getElementById("count").innerHTML = ("This is your test number:" + counter++);
+    document.getElementById("count").innerHTML = ("This is your test number:" + ++counter);
+    document.getElementById('inp').value = '';
+    document.getElementById('inp').focus();
 }
