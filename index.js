@@ -1,32 +1,45 @@
-var number = Math.floor((Math.random() * 100) + 1);
+let number = Math.floor((Math.random() * 100) + 1);
 document.getElementById("btn").addEventListener("click", guessNumber);
 
 document.getElementById("inp")
     .addEventListener("keyup", function(event) {
         event.preventDefault();
-        if (event.keyCode === 13) {
-            document.getElementById("btn").click();
-        }
+        if (event.keyCode === 13)
+            guessNumber();
     });
 
-var counter = 0;
+let counter = 0;
+
+document.getElementById('inp').focus();
 
 function guessNumber() {
-    const num = document.getElementById("inp").value;
-    num_1 = parseInt(num);
+    let userInputNumber = document.getElementById("inp");
+    let resultLabel = document.getElementById("res");
+    let guessCountLabel = document.getElementById("count");
 
-    if (num_1 == parseInt("")) {
-        document.getElementById("res").innerHTML = "Are you sure that this is a number?";
-    } else if (isNaN(num_1)) {
-        document.getElementById("res").innerHTML = "Write the number";
-    } else if (num_1 < number) {
-        document.getElementById("res").innerHTML = "I am thinking about higher number";
-    } else if (num_1 > number) {
-        document.getElementById("res").innerHTML = "I am thinking about lower number";
-    } else {
-        alert("You are the winner :D. You guest after " + counter + " times!");
+    if (userInputNumber.value == number) {
+        alert("You are the winner :D. You guest after " + ++counter + " times!");
+        const choice = confirm("Again?");
+        if (choice) {
+            counter = 0;
+            number = Math.floor((Math.random() * 100) + 1);
+            userInputNumber.innerText = "";
+        } else {
+            alert("Thanks for playing!!");
+            resultLabel.innerText = ("Best guess time " + counter);
+            guessCountLabel.innerText = "";
+        }
+    } else if (userInputNumber.value == "") {
+        resultLabel.innerText = "Are you sure that this is a number?";
+    } else if (userInputNumber.value < number) {
+        counter++
+        resultLabel.innerText = "I am thinking about higher number";
+    } else if (userInputNumber.value > number) {
+        counter++
+        resultLabel.innerText = "I am thinking about lower number";
+    } else if (isNaN(userInputNumber.value)) {
+        resultLabel.innerText = "Write the number";
     }
-    document.getElementById("count").innerHTML = ("This is your test number:" + ++counter);
-    document.getElementById('inp').value = '';
-    document.getElementById('inp').focus();
+    guessCountLabel.innerText = ("This is your test number:" + counter);
+    userInputNumber.value = '';
 }
